@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shravan Sapate — AI/ML Engineer & Full-Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f8f9fa;
+      --text: #1a1f2e;
+      --border: #e0e7ff;
+      --active-tab: #ff6b6b;
+      --tag-blue: #dbeafe;
+      --tag-purple: #e9d5ff;
+      --tag-pink: #fed7aa;
+      --tag-green: #d1fae5;
+      --highlight: #fbbf24;
+      --card-bg: #ffffff;
+      --date-badge: #e9d5ff;
+      --text-secondary: #6b7280;
+      --profile-bg: linear-gradient(135deg, #f8f9fa, #fffbeb);
+    }
+
+    html[data-theme='dark'] {
+      --bg: #0b1120;
+      --text: #e5e7eb;
+      --border: #243047;
+      --active-tab: #fb7185;
+      --tag-blue: #1e3a8a;
+      --tag-purple: #4c1d95;
+      --tag-pink: #7c2d12;
+      --tag-green: #14532d;
+      --highlight: #f59e0b;
+      --card-bg: #111827;
+      --date-badge: #1f2937;
+      --text-secondary: #94a3b8;
+      --profile-bg: linear-gradient(135deg, #111827, #1f2937);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'IBM Plex Mono', monospace;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 14px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* HEADER & NAVIGATION */
+    header {
+      background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255, 255, 255, 0.95) 100%);
+      border-bottom: 3px solid var(--highlight);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-initials {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background-color: var(--highlight);
+      border: 2px solid var(--border);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      font-family: 'Space Mono', monospace;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      border-radius: 6px;
+      color: var(--text);
+    }
+
+    .nav-btn:hover {
+      background-color: rgba(255, 107, 107, 0.08);
+      border-color: var(--active-tab);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn.active {
+      background-color: var(--active-tab);
+      border: 2px solid var(--active-tab);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    }
+
+    .social-header {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 2px solid var(--border);
+      background: var(--card-bg);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .theme-toggle {
+      font-size: 16px;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .icon-btn:hover {
+      background-color: var(--highlight);
+      transform: translateY(-2px);
+    }
+
+    .icon-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .icon-btn.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HERO SECTION (ABOUT) */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+
+    .hero-text h1 {
+      font-family: 'Space Mono', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline-pills {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 0.4rem 1rem;
+      border: 2px solid #fb923c;
+      background-color: #fed7aa;
+      color: #c2410c;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .pill:hover {
+      background-color: #fbbf24;
+      box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+    }
+
+    html[data-theme='dark'] .pill {
+      background-color: #1f2937;
+      color: #fdba74;
+      border-color: #fb923c;
+    }
+
+    html[data-theme='dark'] .pill:hover {
+      background-color: #374151;
+      box-shadow: 0 4px 12px rgba(251, 146, 60, 0.18);
+    }
+
+    .about-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      padding: 1.5rem;
+      line-height: 1.8;
+      font-size: 13px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .about-card:hover {
+      border-color: var(--highlight);
+      box-shadow: 0 8px 20px rgba(251, 191, 36, 0.12);
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+    }
+
+    .profile-circle {
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      border: 3px solid var(--highlight);
+      overflow: hidden;
+      background: var(--profile-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 0 30px rgba(251, 191, 36, 0.25), inset 0 0 30px rgba(251, 191, 36, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .profile-circle:hover {
+      box-shadow: 0 0 40px rgba(251, 191, 36, 0.35), inset 0 0 30px rgba(251, 191, 36, 0.12);
+      transform: scale(1.05);
+    }
+
+    .profile-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      border-radius: 50%;
+    }
+
+    /* SECTION HEADINGS */
+    .section-heading {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      letter-spacing: 2px;
+      position: relative;
+      display: inline-block;
+      color: var(--text);
+    }
+
+    .section-heading .highlight {
+      background: linear-gradient(120deg, #fbbf24, #fb923c);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 800;
+    }
+
+    /* EXPERIENCE SECTION */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .experience-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      padding: 2rem;
+      position: relative;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .experience-card:hover {
+      border-color: #0369a1;
+      box-shadow: 0 8px 20px rgba(3, 105, 161, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+
+    .experience-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .company-badge {
+      display: inline-block;
+      background-color: var(--tag-green);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.8rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+
+    .date-badge {
+      background-color: var(--date-badge);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.8rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .location {
+      color: var(--text-secondary);
+      font-size: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .experience-bullets {
+      list-style: none;
+    }
+
+    .experience-bullets li {
+      margin-bottom: 0.8rem;
+      font-size: 13px;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .experience-bullets li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+    }
+
+    /* STACK SECTION */
+    .stack-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .stack-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .stack-card:hover {
+      border-color: #7c3aed;
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.12);
+    }
+
+    .stack-category {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .stack-category::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: var(--border);
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      padding: 0.4rem 0.8rem;
+      border: 1px solid currentColor;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .tag:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .tag-blue {
+      background-color: #dbeafe;
+      color: #0369a1;
+      border-color: #0369a1;
+    }
+
+    .tag-purple {
+      background-color: #e9d5ff;
+      color: #7c3aed;
+      border-color: #7c3aed;
+    }
+
+    .tag-pink {
+      background-color: #fed7aa;
+      color: #c2410c;
+      border-color: #c2410c;
+    }
+
+    /* PROJECTS SECTION */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+      border-color: #c2410c;
+      box-shadow: 0 8px 20px rgba(194, 65, 12, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 1rem;
+    }
+
+    .project-title {
+      font-size: 15px;
+      font-weight: 700;
+      flex: 1;
+    }
+
+    .project-year {
+      background-color: var(--date-badge);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.6rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .project-tech .tag {
+      background-color: transparent;
+      border: 1px solid var(--border);
+      font-size: 10px;
+    }
+
+    .project-description {
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .project-bullets {
+      list-style: none;
+    }
+
+    .project-bullets li {
+      margin-bottom: 0.5rem;
+      font-size: 12px;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .project-bullets li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 12px;
+      transition: opacity 0.2s;
+    }
+
+    .project-link:hover {
+      opacity: 0.7;
+    }
+
+    .project-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ACHIEVEMENTS SECTION */
+    .achievements-list {
+      margin-top: 2rem;
+    }
+
+    .achievement-item {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      font-size: 13px;
+      line-height: 1.7;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .achievement-item:hover {
+      border-color: #059669;
+      box-shadow: 0 8px 20px rgba(5, 150, 105, 0.12);
+      transform: translateX(4px);
+    }
+
+    /* CONTRIBUTION HEATMAP */
+    /* FOOTER */
+    footer {
+      border-top: 3px solid var(--highlight);
+      padding: 2rem;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4rem;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(56, 189, 248, 0.08) 100%);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+
+      .nav-tabs {
+        flex-direction: column;
+      }
+
+      .nav-btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .social-header {
+        flex-wrap: wrap;
+      }
+
+      .icon-btn {
+        width: 40px;
+        height: 40px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-text h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-heading {
+        font-size: 1.3rem;
+      }
+
+      .experience-grid, .stack-cards, .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-circle {
+        width: 260px;
+        height: 260px;
+      }
+
+      main {
+        padding: 2rem 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-container {
+        gap: 0.75rem;
+      }
+
+      .logo {
+        font-size: 15px;
+        letter-spacing: 1px;
+      }
+
+      .social-header {
+        gap: 0.35rem;
+      }
+
+      .hero-text h1 {
+        font-size: 1.55rem;
+        line-height: 1.1;
+      }
+
+      .about-card,
+      .experience-card,
+      .stack-card,
+      .project-card,
+      .achievement-card {
+        padding: 1rem;
+      }
+
+      .profile-circle {
+        width: 220px;
+        height: 220px;
+      }
+
+      .section-heading {
+        font-size: 1.15rem;
+      }
+
+      .pill,
+      .tag {
+        font-size: 10px;
+      }
+
+      main {
+        padding: 1.5rem 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <span class="logo-initials">SS</span>
+        SHRAVAN SAPATE
+      </div>
+
+      <nav class="nav-tabs">
+        <button class="nav-btn active" data-tab="about">ABOUT</button>
+        <button class="nav-btn" data-tab="experience">EXPERIENCE</button>
+        <button class="nav-btn" data-tab="stack">STACK</button>
+        <button class="nav-btn" data-tab="projects">PROJECTS</button>
+        <button class="nav-btn" data-tab="achievements">ACHIEVEMENTS</button>
+      </nav>
+
+      <div class="social-header">
+        <a href="https://linkedin.com/in/shravansapate" target="_blank" rel="noopener" class="icon-btn" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+        <a href="https://github.com/Shravansapate" target="_blank" rel="noopener" class="icon-btn" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+          </svg>
+        </a>
+        <a href="https://twitter.com/shravansapate" target="_blank" rel="noopener" class="icon-btn" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 9 0 11-4s1-6.75-1-9.5a5.5 5.5 0 00-.5-.5z"></path>
+          </svg>
+        </a>
+        <a href="mailto:shravansapate09@gmail.com" class="icon-btn" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+        </a>
+        <a id="resumeDownload" href="public/Shravan_Sapate_Resume.pdf" download="Shravan_Sapate_Resume.pdf" class="icon-btn" title="Download Resume">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </a>
+        <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Toggle dark mode">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div id="resumeNotice" style="display:none;position:fixed;right:1rem;bottom:1rem;background:var(--card-bg);border:1px solid var(--border);padding:0.8rem 1rem;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.08);font-size:13px;z-index:9999;">
+    Resume not found at <strong>public/Shravan_Sapate_Resume.pdf</strong>. <a id="resumeEmailLink" href="mailto:shravansapate09@gmail.com?subject=Resume%20Request" style="color:var(--highlight);text-decoration:none;margin-left:6px;">Email me</a>
+  </div>
+
+  <main>
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section active">
+      <div class="hero">
+        <div class="hero-text">
+          <h1>SHRAVAN<br>SAPATE</h1>
+          <div class="tagline-pills">
+            <div class="pill">PYTHON</div>
+            <div class="pill">ML</div>
+            <div class="pill">MERN</div>
+            <div class="pill">AI</div>
+          </div>
+          <div class="about-card">
+            <p><strong>I'm a 4th-year Computer Science & Business Systems student</strong> at St. Vincent Pallotti College of Engineering & Technology, Nagpur.</p>
+            <p style="margin-top: 1rem;">Currently interning at <strong>Matverse Vision Pvt Ltd</strong> building ML-driven irrigation forecasting models. I build across the stack — from React frontends to TensorFlow deep learning pipelines.</p>
+            <p style="margin-top: 1rem;">Learning to build scalable, production-ready AI systems.</p>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <div class="profile-circle">
+            <img src="public/profile.jpg" alt="Shravan Sapate">
+          </div>
+        </div>
+      </div>
+
+
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="section">
+      <h2 class="section-heading"><span class="highlight">EXPERIENCE</span></h2>
+      
+      <div class="experience-grid">
+        <div class="experience-card">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">ML Intern</div>
+              <div class="company-badge">Matverse Vision Pvt Ltd</div>
+            </div>
+            <div class="date-badge">March 2026 - June 2026</div>
+          </div>
+          <div class="location">📍 Remote</div>
+          <ul class="experience-bullets">
+            <li>Built ML model to predict irrigation requirements using soil moisture, rainfall, humidity, and temperature data.</li>
+            <li>Integrated real-world datasets from SoilGrid with data preprocessing and feature engineering.</li>
+          </ul>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Technical Trainer & Lecturer</div>
+              <div class="company-badge">Vigyan Bharati</div>
+            </div>
+            <div class="date-badge">Dec 2024 - Jan 2026</div>
+          </div>
+          <div class="location">📍 Multiple Districts</div>
+          <ul class="experience-bullets">
+            <li>Delivered technical lectures under Atal Tinkering Lab (ATL) initiative at government schools.</li>
+            <li>Trained teachers, ITI students, and school students on emerging technologies across 5+ schools.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK SECTION -->
+    <section id="stack" class="section">
+      <h2 class="section-heading"><span class="highlight">TECH STACK</span></h2>
+      
+      <div class="stack-cards">
+        <div class="stack-card">
+          <div class="stack-category">&lt;/&gt; Languages</div>
+          <div class="tags-container">
+            <span class="tag tag-blue">Python</span>
+            <span class="tag tag-blue">C++</span>
+            <span class="tag tag-blue">JavaScript</span>
+            <span class="tag tag-blue">C</span>
+            <span class="tag tag-blue">React</span>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-category">≡ Libraries & Frameworks</div>
+          <div class="tags-container">
+            <span class="tag tag-purple">Scikit-learn</span>
+            <span class="tag tag-purple">TensorFlow</span>
+            <span class="tag tag-purple">Django</span>
+            <span class="tag tag-purple">Flask</span>
+            <span class="tag tag-purple">Node.js</span>
+            <span class="tag tag-purple">PyTorch</span>
+            <span class="tag tag-purple">OpenCV</span>
+            <span class="tag tag-purple">Kivy</span>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-category">🔧 Developer Tools</div>
+          <div class="tags-container">
+            <span class="tag tag-pink">VSCode</span>
+            <span class="tag tag-pink">Git</span>
+            <span class="tag tag-pink">Postman</span>
+            <span class="tag tag-pink">Power BI</span>
+            <span class="tag tag-pink">Pandas</span>
+            <span class="tag tag-pink">NumPy</span>
+            <span class="tag tag-pink">Matplotlib</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="section">
+      <h2 class="section-heading"><span class="highlight">BUILD LOG</span></h2>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-title">Legislate AI</div>
+            <div class="project-year">2025</div>
+          </div>
+          <div class="project-tech">
+            <span class="tag">React</span>
+            <span class="tag">n8n</span>
+            <span class="tag">OpenRouter</span>
+            <span class="tag">Google AI Studio</span>
+          </div>
+          <div class="project-description">
+            AI-powered legal assistance platform for guidance, document drafting, and automated workflows to improve access to justice.
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/Shravansapate/Legislate-AI" target="_blank" rel="noopener" class="project-link">
+              GITHUB
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-title">Disaster Prediction System</div>
+            <div class="project-year">2025</div>
+          </div>
+          <div class="project-tech">
+            <span class="tag">Python</span>
+            <span class="tag">Random Forest</span>
+            <span class="tag">Flask</span>
+            <span class="tag">React</span>
+          </div>
+          <div class="project-description">
+            ML-based disaster prediction and impact assessment system supporting timely response and decision-making.
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/Shravansapate/Disaster-Prediction" target="_blank" rel="noopener" class="project-link">
+              GITHUB
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-title">Face Verification System</div>
+            <div class="project-year">2024</div>
+          </div>
+          <div class="project-tech">
+            <span class="tag">Python</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">Kivy</span>
+          </div>
+          <div class="project-description">
+            Real-time face authentication using a Siamese neural network and deep learning.
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/Shravansapate/Face-Verification" target="_blank" rel="noopener" class="project-link">
+              GITHUB
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-title">Intent Recognition System</div>
+            <div class="project-year">2024</div>
+          </div>
+          <div class="project-tech">
+            <span class="tag">Python</span>
+            <span class="tag">NLP</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Flask</span>
+          </div>
+          <div class="project-description">
+            NLP model for classifying user intents for chatbots and automation.
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/Shravansapate/Intent-Recognition" target="_blank" rel="noopener" class="project-link">
+              GITHUB
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-title">House Price Prediction</div>
+            <div class="project-year">2024</div>
+          </div>
+          <div class="project-tech">
+            <span class="tag">Python</span>
+            <span class="tag">Random Forest</span>
+            <span class="tag">Pandas</span>
+          </div>
+          <div class="project-description">
+            ML model for predicting house prices using key property features.
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/Shravansapate/House-Price-Prediction" target="_blank" rel="noopener" class="project-link">
+              GITHUB
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTION -->
+    <section id="achievements" class="section">
+      <h2 class="section-heading"><span class="highlight">ACHIEVEMENTS</span></h2>
+      
+      <div class="achievements-list">
+        <div class="achievement-item">
+          🥉 <strong>2nd Runner-Up</strong> — Socio-Ideathon 2025 (AI-powered Legal Assistant)
+        </div>
+        <div class="achievement-item">
+          📺 <strong>Featured in Shankarnath Local News Channel</strong> for notable achievements and initiatives
+        </div>
+        <div class="achievement-item">
+          🥉 <strong>3rd Position</strong> — Innovolt Project Competition, SB Jain College
+        </div>
+        <div class="achievement-item">
+          🥉 <strong>3rd Position</strong> — Data Visualization Hackathon, SB Jain College
+        </div>
+        <div class="achievement-item">
+          🎖️ <strong>College Appreciation & Felicitation</strong> for outstanding contributions in technical domain
+        </div>
+        <div class="achievement-item">
+          🏫 <strong>Delivered ATL Lectures</strong> across 5+ government schools in multiple districts of Maharashtra
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Designed & Built by Shravan Sapate • © 2026</p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeStorageKey = 'portfolio-theme';
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+
+      const isDark = theme === 'dark';
+      const label = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+
+      themeIcon.textContent = isDark ? '☀️' : '🌙';
+      themeToggle.setAttribute('aria-label', label);
+      themeToggle.setAttribute('title', label);
+      localStorage.setItem(themeStorageKey, theme);
+    }
+
+    const savedTheme = localStorage.getItem(themeStorageKey)
+      || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
+
+    // Tab Navigation
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const tab = e.target.dataset.tab;
+        
+        // Hide all sections
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        
+        // Remove active class from all buttons
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        
+        // Show selected section
+        document.getElementById(tab).classList.add('active');
+        
+        // Add active class to clicked button
+        e.target.classList.add('active');
+      });
+    });
+
+    // Smooth scroll for section headings
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Resume existence check and graceful fallback
+    (async function verifyResume() {
+      const resumeAnchor = document.getElementById('resumeDownload');
+      const notice = document.getElementById('resumeNotice');
+      if (!resumeAnchor) return;
+
+      const resumeUrl = resumeAnchor.getAttribute('href');
+      try {
+        const resp = await fetch(resumeUrl, { method: 'GET' });
+        if (!resp.ok) throw new Error('Not found');
+        // file exists — ensure enabled
+        resumeAnchor.classList.remove('disabled');
+        resumeAnchor.setAttribute('title', 'Download Resume');
+      } catch (err) {
+        // disable download and show notice
+        resumeAnchor.classList.add('disabled');
+        resumeAnchor.setAttribute('href', '#');
+        resumeAnchor.setAttribute('title', 'Resume not found — upload to public/Shravan_Sapate_Resume.pdf');
+        if (notice) notice.style.display = 'block';
+      }
+    })();
+  </script>
+</body>
+</html>
