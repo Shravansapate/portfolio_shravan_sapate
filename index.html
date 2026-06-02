@@ -688,8 +688,25 @@
     }
 
     @media (max-width: 480px) {
+      header {
+        padding: 1rem 0.85rem;
+      }
+
       .header-container {
         gap: 0.75rem;
+      }
+
+      .nav-tabs {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+      }
+
+      .nav-btn {
+        flex: 1 0 auto;
+        padding: 0.5rem 0.8rem;
+        font-size: 10px;
       }
 
       .logo {
@@ -701,8 +718,13 @@
         gap: 0.35rem;
       }
 
+      .hero {
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
       .hero-text h1 {
-        font-size: 1.55rem;
+        font-size: 1.45rem;
         line-height: 1.1;
       }
 
@@ -715,8 +737,8 @@
       }
 
       .profile-circle {
-        width: 220px;
-        height: 220px;
+        width: 190px;
+        height: 190px;
       }
 
       .section-heading {
@@ -729,7 +751,7 @@
       }
 
       main {
-        padding: 1.5rem 0.85rem;
+        padding: 1.25rem 0.75rem;
       }
     }
   </style>
